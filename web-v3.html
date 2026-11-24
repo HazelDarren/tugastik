@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & Biodata Lengkap - Hazel Darren</title>
+    <!-- Font Modern dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Ikon dari FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --accent: #fdcb6e;
+            --dark-bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.78);
+            --box-bg: rgba(15, 23, 42, 0.6);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Tema Terang (Light Mode) */
+        body.light-mode {
+            --dark-bg: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --box-bg: rgba(248, 250, 252, 0.92);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: rgba(15, 23, 42, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Canvas Partikel Latar Belakang */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Efek Cahaya Latar Belakang */
+        .bg-glow-1, .bg-glow-2 {
+            position: fixed;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            filter: blur(130px);
+            z-index: -1;
+            opacity: 0.65;
+            animation: float 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .bg-glow-1 {
+            background: var(--primary);
+            top: -50px;
+            left: -50px;
+        }
+
+        .bg-glow-2 {
+            background: var(--secondary);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        /* Container Utama */
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 940px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            position: relative;
+        }
+
+        /* Panel Kontrol Atas (Warna, Suara, Tema) */
+        .top-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .color-picker-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--box-bg);
+            padding: 6px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .color-dot:hover, .color-dot.active {
+            transform: scale(1.25);
+            border-color: #fff;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Bagian Profil Atas */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin-bottom: 12px;
+            transition: transform 0.4s ease;
+        }
+
+        .avatar-wrapper:hover {
+            transform: scale(1.06);
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            padding: 4px;
+            background: var(--dark-bg);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .profile-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: var(--secondary);
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 4px;
+            min-height: 24px;
+        }
+
+        .bio-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            max-width: 620px;
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        /* Grid 2 Kolom */
+        .grid-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-content {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 25px;
+            }
+        }
+
+        /* Kartu dengan Efek Tilt 3D */
+        .box {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.25);
+        }
+
+        .box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .box-title {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .box-title i {
+            color: var(--secondary);
+        }
+
+        /* Tombol Filter */
+        .filter-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        /* Daftar Biodata */
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-muted);
+        }
+
+        .info-value {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .copy-email {
+            cursor: pointer;
+            color: var(--secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .copy-email:hover {
+            text-decoration: underline;
+        }
+
+        /* Progress Bar Nilai Mata Pelajaran */
+        .skill-item {
+            margin-bottom: 16px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Bagian Hobi */
+        .hobbies-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: default;
+            transition: 0.3s;
+        }
+
+        body:not(.light-mode) .badge {
+            color: #c4b5fd;
+        }
+
+        .badge:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Timeline Pengalaman */
+        .timeline {
+            position: relative;
+            padding-left: 22px;
+            border-left: 2px solid var(--secondary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .timeline-item.hidden {
+            display: none;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -28px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--secondary);
+            box-shadow: 0 0 10px var(--secondary);
+        }
+
+        .timeline-date {
+            font-size: 11px;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-role {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 2px 0;
+        }
+
+        .timeline-place {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .timeline-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Daftar Prestasi & Galeri Modal */
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .achievement-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: rgba(148, 163, 184, 0.06);
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            background: rgba(148, 163, 184, 0.12);
+            transform: translateX(5px);
+            border-color: rgba(253, 203, 110, 0.5);
+        }
+
+        .achievement-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 10px;
+            background: rgba(253, 203, 110, 0.18);
+            color: #eab308;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .achievement-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .achievement-info span {
+            display: block;
+            font-size: 11px;
+            color: #eab308;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .achievement-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .cert-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(253, 203, 110, 0.15);
+            border: 1px solid rgba(253, 203, 110, 0.4);
+            color: #eab308;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cert-btn:hover {
+            background: #eab308;
+            color: #0f172a;
+        }
+
+        /* Formulir Kontak Langsung */
+        .contact-section {
+            margin-bottom: 25px;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .contact-form .full-width {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 600px) {
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            .contact-form .full-width {
+                grid-column: span 1;
+            }
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(148, 163, 184, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 15px;
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0, 206, 201, 0.15);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 95px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 206, 201, 0.3);
+        }
+
+        /* Tombol Sosial Media */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--secondary);
+            color: #0f172a;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 206, 201, 0.3);
+        }
+
+        /* Lightbox Modal Sertifikat */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cert-preview {
+            border: 2px dashed var(--accent);
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.15), rgba(0, 206, 201, 0.15));
+            border-radius: 14px;
+            padding: 30px 20px;
+            margin: 15px 0;
+        }
+
+        .cert-preview i {
+            font-size: 42px;
+            color: #eab308;
+            margin-bottom: 10px;
+        }
+
+        /* Notifikasi Toast */
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 300;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Animasi Muncul saat Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Partikel Latar Belakang Interaktif -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Efek Cahaya Latar -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="container">
+        <!-- Panel Kontrol Atas: Pilih Warna Tema, Suara Klik, Mode Gelap/Terang -->
+        <div class="top-controls">
+            <div class="color-picker-wrap" title="Pilih Warna Tema">
+                <span style="font-size: 11px; color: var(--text-muted); margin-right: 4px;"><i class="fas fa-palette"></i></span>
+                <button class="color-dot active" data-primary="#6c5ce7" data-secondary="#00cec9" style="background: linear-gradient(45deg, #6c5ce7, #00cec9);"></button>
+                <button class="color-dot" data-primary="#2563eb" data-secondary="#38bdf8" style="background: linear-gradient(45deg, #2563eb, #38bdf8);"></button>
+                <button class="color-dot" data-primary="#059669" data-secondary="#34d399" style="background: linear-gradient(45deg, #059669, #34d399);"></button>
+                <button class="color-dot" data-primary="#d97706" data-secondary="#fbbf24" style="background: linear-gradient(45deg, #d97706, #fbbf24);"></button>
+                <button class="color-dot" data-primary="#e11d48" data-secondary="#fb7185" style="background: linear-gradient(45deg, #e11d48, #fb7185);"></button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="icon-btn" id="sound-btn" title="Aktifkan/Matikan Efek Suara">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="icon-btn" id="theme-btn" title="Ganti Mode Gelap/Terang">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bagian Atas: Foto & Nama -->
+        <div class="profile-header reveal">
+            <div class="avatar-wrapper">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto Profil">
+            </div>
+            <div class="status-pill">
+                <span class="status-dot"></span> Open to Collaboration & Projects
+            </div>
+            <h1>Hazel Darren Liawira</h1>
+            <div class="tagline" id="typing-text"></div>
+            <p class="bio-desc">
+                Halo! Saya adalah pelajar yang aktif belajar, menyukai matematika, teknologi, dan terus berusaha meningkatkan prestasi akademik maupun non-akademik.
+            </p>
+        </div>
+
+        <!-- Baris 1: Data Diri & Rata-Rata Nilai Mata Pelajaran -->
+        <div class="grid-content">
+            <!-- Kolom Kiri: Data Diri -->
+            <div class="box tilt-card reveal">
+                <div class="box-header">
+                    <div class="box-title">
+                        <i class="fas fa-user-astronaut"></i> Data Pribadi
+                    </div>
+                </div>
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">Panggilan</span>
+                        <span class="info-value">Hazel atau Darren</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Tempat, Tgl Lahir</span>
+                        <span class="info-value">Jakarta, 23 Mei 2010</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Status</span>
+                        <span class="info-value">Pelajar</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Sekolah</span>
+                        <span class="info-value">SMA Damai</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Email</span>
+                        <span class="info-value copy-email" id="copy-email-btn" title="Klik untuk menyalin email">
+                            0109327654@damai.sch.id <i class="far fa-copy"></i>
+                        </span>
+                    </li>
+                </ul>
+
+                <div class="hobbies-wrap">
+                    <span class="badge"><i class="fas fa-book"></i> Membaca</span>
+                    <span class="badge"><i class="fas fa-laptop-code"></i> Coding</span>
+                    <span class="badge"><i class="fas fa-calculator"></i> Matematika</span>
+                    <span class="badge"><i class="fas fa-flask"></i> Sains</span>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Rata-Rata Nilai Mata Pelajaran Sekolah -->
+            <div class="box tilt-card reveal">
+                <div class="box-header">
+                    <div class="box-title">
+                        <i class="fas fa-graduation-cap"></i> Nilai Mata Pelajaran
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Matematika</span>
+                        <span>90 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Matematika Lanjut</span>
+                        <span>95 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="95%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Fisika</span>
+                        <span>88 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="88%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Kimia</span>
+                        <span>85 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Biologi</span>
+                        <span>85 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baris 2: Pengalaman (dengan Filter) & Prestasi (dengan Modal Sertifikat) -->
+        <div class="grid-content">
+            <!-- Kolom Kiri: Pengalaman -->
+            <div class="box tilt-card reveal">
+                <div class="box-header">
+                    <div class="box-title">
+                        <i class="fas fa-briefcase"></i> Pengalaman
+                    </div>
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all">Semua</button>
+                        <button class="filter-btn" data-filter="sma">SMA</button>
+                        <button class="filter-btn" data-filter="smp">SMP</button>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item" data-category="sma">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2026 - Sekarang</div>
+                        <div class="timeline-role">Ketua OSIS SMA Damai</div>
+                        <div class="timeline-place">OSIS Damai 2026-2027</div>
+                        <p class="timeline-desc">Mengelola dan memimpin kepengurusan OSIS.</p>
+                    </div>
+
+                    <div class="timeline-item" data-category="sma">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2026</div>
+                        <div class="timeline-role">Koordinator OSIS Divisi Kerohanian</div>
+                        <div class="timeline-place">OSIS SMA Damai 2026</div>
+                        <p class="timeline-desc">Mengkoordinasi segala kegiatan atau hal tentang kerohanian.</p>
+                    </div>
+
+                    <div class="timeline-item" data-category="smp">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2023 - 2024</div>
+                        <div class="timeline-role">Koordinator OSIS Divisi Media Komunikasi</div>
+                        <div class="timeline-place">OSIS SMP Damai</div>
+                        <p class="timeline-desc">Mendokumentasikan kegiatan sekolah dan mengelola sound sistem.</p>
+                    </div>
+
+                    <div class="timeline-item" data-category="smp">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2022 - 2023</div>
+                        <div class="timeline-role">Pengurus Inti OSIS Divisi Bendahara 2</div>
+                        <div class="timeline-place">OSIS SMP Damai</div>
+                        <p class="timeline-desc">Menghitung dan mengelola segala pengeluaran dan pemasukan OSIS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Prestasi & Penghargaan -->
+            <div class="box tilt-card reveal">
+                <div class="box-header">
+                    <div class="box-title">
+                        <i class="fas fa-trophy" style="color: #eab308;"></i> Prestasi
+                    </div>
+                </div>
+                <div class="achievement-list">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>Peringkat 2</h4>
+                            <span>Kenaikan Kelas dari 10 ke 11 • 2026</span>
+                            <p>Meraih peringkat kedua dalam total nilai akademik dan sifat selama kelas 10.</p>
+                            <button class="cert-btn" data-title="Sertifikat Peringkat 2 Kelas 10" data-issuer="SMA Damai • Tahun 2026" data-desc="Diberikan kepada Hazel Darren Liawira atas pencapaian peringkat 2 nilai akademik dan sikap kelas 10.">
+                                <i class="fas fa-eye"></i> Lihat Detail Sertifikat
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>Peringkat 3</h4>
+                            <span>Kelulusan SMP Damai • 2025</span>
+                            <p>Masuk dalam jajaran 3 besar SMP Damai angkatan 54.</p>
+                            <button class="cert-btn" data-title="Piagam Peringkat 3 Kelulusan" data-issuer="SMP Damai Angkatan 54 • Tahun 2025" data-desc="Penghargaan atas prestasi meraih peringkat 3 terbaik pada kelulusan SMP Damai angkatan ke-54.">
+                                <i class="fas fa-eye"></i> Lihat Detail Sertifikat
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>Peringkat 2 Nilai dan 4 Ujian Praktek</h4>
+                            <span>Kelulusan SD Damai • 2022</span>
+                            <p>Peringkat 2 untuk total nilai dan peringkat 4 untuk jumlah nilai ujian praktek.</p>
+                            <button class="cert-btn" data-title="Piagam Prestasi Kelulusan SD" data-issuer="SD Damai • Tahun 2022" data-desc="Meraih peringkat 2 total nilai akhir dan peringkat 4 ujian praktik kelulusan SD Damai.">
+                                <i class="fas fa-eye"></i> Lihat Detail Sertifikat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baris 3: Formulir Kontak Langsung -->
+        <div class="box contact-section reveal">
+            <div class="box-header">
+                <div class="box-title">
+                    <i class="fas fa-paper-plane"></i> Kirim Pesan Langsung
+                </div>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <input type="text" class="form-input" id="sender-name" placeholder="Nama Kamu" required>
+                <input type="email" class="form-input" id="sender-email" placeholder="Email Kamu" required>
+                <textarea class="form-input full-width" id="sender-msg" placeholder="Tulis pesan atau ajakan kolaborasi untuk Hazel..." required></textarea>
+                <div class="full-width" style="text-align: right;">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Kirim Pesan
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Bagian Bawah: Sosial Media -->
+        <div class="social-links reveal">
+            <a href="https://www.instagram.com/hazeldarrenn/" target="_blank" class="social-btn sound-trigger" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@hzelee_" target="_blank" class="social-btn sound-trigger" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://github.com" target="_blank" class="social-btn sound-trigger" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="social-btn sound-trigger" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:0109327654@damai.sch.id" class="social-btn sound-trigger" title="Kirim Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- Modal Pop-Up Sertifikat -->
+    <div class="modal-overlay" id="cert-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="close-modal"><i class="fas fa-times"></i></button>
+            <h3 id="modal-title" style="font-size: 18px; color: var(--text-main);">Judul Sertifikat</h3>
+            <p id="modal-issuer" style="font-size: 12px; color: var(--secondary); font-weight: 600; margin-top: 4px;">Penerbit</p>
+            <div class="cert-preview">
+                <i class="fas fa-certificate"></i>
+                <h4 style="font-size: 16px; margin-bottom: 6px;">Hazel Darren Liawira</h4>
+                <p id="modal-desc" style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Deskripsi sertifikat.</p>
+            </div>
+            <p style="font-size: 11px; color: var(--text-muted);">*Kamu juga bisa mengganti kotak ini dengan tag <code>&lt;img src="sertifikat.jpg"&gt;</code> untuk foto sertifikat asli.</p>
+        </div>
+    </div>
+
+    <!-- Elemen Notifikasi Toast -->
+    <div class="toast" id="toast-msg">Notifikasi</div>
+
+    <script>
+        // --- 1. EFEK SUARA KLIK LEMBUT (Web Audio API tanpa perlu file mp3 eksternal) ---
+        let soundEnabled = true;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playClickSound() {
+            if (!soundEnabled) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
+        }
+
+        const soundBtn = document.getElementById("sound-btn");
+        soundBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            const icon = soundBtn.querySelector("i");
+            icon.className = soundEnabled ? "fas fa-volume-up" : "fas fa-volume-mute";
+            if (soundEnabled) playClickSound();
+            showToast(soundEnabled ? "Efek suara diaktifkan" : "Efek suara dimatikan");
+        });
+
+        document.querySelectorAll("button, a, .copy-email").forEach(el => {
+            el.addEventListener("click", playClickSound);
+        });
+
+        // --- 2. PARTIKEL LATAR BELAKANG INTERAKTIF ---
+        const canvas = document.getElementById("particles-canvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        let mouse = { x: null, y: null };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        window.addEventListener("mousemove", (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 0.7;
+                this.vy = (Math.random() - 0.5) * 0.7;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
+                ctx.fillStyle = secondaryColor || "#00cec9";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 110) {
+                        ctx.strokeStyle = secondaryColor;
+                        ctx.globalAlpha = 1 - dist / 110;
+                        ctx.lineWidth = 0.6;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                if (mouse.x && mouse.y) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 130) {
+                        ctx.strokeStyle = secondaryColor;
+                        ctx.globalAlpha = 0.4;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // --- 3. PILIH WARNA TEMA KUSTOM (ACCENT COLOR PICKER) ---
+        const colorDots = document.querySelectorAll(".color-dot");
+        colorDots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                colorDots.forEach(d => d.classList.remove("active"));
+                dot.classList.add("active");
+                document.documentElement.style.setProperty("--primary", dot.dataset.primary);
+                document.documentElement.style.setProperty("--secondary", dot.dataset.secondary);
+            });
+        });
+
+        // --- 4. EFEK MENGETIK OTOMATIS ---
+        const texts = ["Pelajar Berprestasi", "Ketua OSIS SMA Damai", "Suka Matematika & Sains", "Aktif Berolahraga"];
+        let count = 0;
+        let index = 0;
+
+        (function type() {
+            if (count === texts.length) count = 0;
+            const currentText = texts[count];
+            const letter = currentText.slice(0, ++index);
+            document.getElementById("typing-text").textContent = letter + "|";
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000);
+            } else {
+                setTimeout(type, 90);
+            }
+        })();
+
+        // --- 5. MODE GELAP / TERANG ---
+        const themeBtn = document.getElementById("theme-btn");
+        const themeIcon = themeBtn.querySelector("i");
+        themeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            if (document.body.classList.contains("light-mode")) {
+                themeIcon.classList.replace("fa-sun", "fa-moon");
+            } else {
+                themeIcon.classList.replace("fa-moon", "fa-sun");
+            }
+        });
+
+        // --- 6. FILTER PENGALAMAN (SEMUA / SMA / SMP) ---
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const timelineItems = document.querySelectorAll(".timeline-item");
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const category = btn.dataset.filter;
+                timelineItems.forEach(item => {
+                    if (category === "all" || item.dataset.category === category) {
+                        item.classList.remove("hidden");
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+            });
+        });
+
+        // --- 7. MODAL POP-UP SERTIFIKAT ---
+        const modal = document.getElementById("cert-modal");
+        const closeModal = document.getElementById("close-modal");
+        const certBtns = document.querySelectorAll(".cert-btn");
+
+        certBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.getElementById("modal-title").textContent = btn.dataset.title;
+                document.getElementById("modal-issuer").textContent = btn.dataset.issuer;
+                document.getElementById("modal-desc").textContent = btn.dataset.desc;
+                modal.classList.add("open");
+            });
+        });
+
+        closeModal.addEventListener("click", () => modal.classList.remove("open"));
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) modal.classList.remove("open");
+        });
+
+        // --- 8. PARALLAX TILT PADA KARTU ---
+        document.querySelectorAll(".tilt-card").forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+            });
+        });
+
+        // --- 9. FORMULIR KONTAK LANGSUNG ---
+        document.getElementById("contact-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("sender-name").value;
+            const email = document.getElementById("sender-email").value;
+            const msg = document.getElementById("sender-msg").value;
+            const subject = encodeURIComponent(`Pesan Portofolio dari ${name}`);
+            const body = encodeURIComponent(`Nama: ${name}
+Email: ${email}
+
+Pesan:
+${msg}`);
+            showToast("Membuka aplikasi email untuk mengirim pesan...");
+            setTimeout(() => {
+                window.location.href = `mailto:0109327654@damai.sch.id?subject=${subject}&body=${body}`;
+            }, 800);
+        });
+
+        // --- 10. SALIN EMAIL & NOTIFIKASI TOAST ---
+        function showToast(message) {
+            const toast = document.getElementById("toast-msg");
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2500);
+        }
+
+        document.getElementById("copy-email-btn").addEventListener("click", () => {
+            navigator.clipboard.writeText("0109327654@damai.sch.id").then(() => {
+                showToast("Email berhasil disalin ke clipboard!");
+            });
+        });
+
+        // --- 11. ANIMASI SCROLL REVEAL & PROGRESS BAR ---
+        const revealElements = document.querySelectorAll(".reveal");
+        const progressFills = document.querySelectorAll(".progress-fill");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    if (entry.target.querySelector(".progress-fill")) {
+                        progressFills.forEach(bar => {
+                            bar.style.width = bar.getAttribute("data-width");
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
